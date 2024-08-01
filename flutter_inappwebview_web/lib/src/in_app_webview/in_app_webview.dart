@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_inappwebview_platform_interface/flutter_inappwebview_platform_interface.dart';
+
 import '../../web/web_platform_manager.dart';
 import 'headless_in_app_webview.dart';
-
 import 'in_app_webview_controller.dart';
 
 /// Object specifying creation parameters for creating a [PlatformInAppWebViewWidget].
@@ -12,129 +12,133 @@ import 'in_app_webview_controller.dart';
 /// this class.
 class WebPlatformInAppWebViewWidgetCreationParams
     extends PlatformInAppWebViewWidgetCreationParams {
-  WebPlatformInAppWebViewWidgetCreationParams(
-      {super.controllerFromPlatform,
-      super.key,
-      super.layoutDirection,
-      super.gestureRecognizers,
-      super.headlessWebView,
-      super.keepAlive,
-      super.preventGestureDelay,
-      super.windowId,
-      super.onWebViewCreated,
-      super.onLoadStart,
-      super.onLoadStop,
-      @Deprecated('Use onReceivedError instead') super.onLoadError,
-      super.onReceivedError,
-      @Deprecated("Use onReceivedHttpError instead") super.onLoadHttpError,
-      super.onReceivedHttpError,
-      super.onProgressChanged,
-      super.onConsoleMessage,
-      super.shouldOverrideUrlLoading,
-      super.onLoadResource,
-      super.onScrollChanged,
-      @Deprecated('Use onDownloadStartRequest instead') super.onDownloadStart,
-      super.onDownloadStartRequest,
-      @Deprecated('Use onLoadResourceWithCustomScheme instead')
-      super.onLoadResourceCustomScheme,
-      super.onLoadResourceWithCustomScheme,
-      super.onCreateWindow,
-      super.onCloseWindow,
-      super.onJsAlert,
-      super.onJsConfirm,
-      super.onJsPrompt,
-      super.onReceivedHttpAuthRequest,
-      super.onReceivedServerTrustAuthRequest,
-      super.onReceivedClientCertRequest,
-      @Deprecated('Use FindInteractionController.onFindResultReceived instead')
-      super.onFindResultReceived,
-      super.shouldInterceptAjaxRequest,
-      super.onAjaxReadyStateChange,
-      super.onAjaxProgress,
-      super.shouldInterceptFetchRequest,
-      super.onUpdateVisitedHistory,
-      @Deprecated("Use onPrintRequest instead") super.onPrint,
-      super.onPrintRequest,
-      super.onLongPressHitTestResult,
-      super.onEnterFullscreen,
-      super.onExitFullscreen,
-      super.onPageCommitVisible,
-      super.onTitleChanged,
-      super.onWindowFocus,
-      super.onWindowBlur,
-      super.onOverScrolled,
-      super.onZoomScaleChanged,
-      @Deprecated('Use onSafeBrowsingHit instead')
-      super.androidOnSafeBrowsingHit,
-      super.onSafeBrowsingHit,
-      @Deprecated('Use onPermissionRequest instead')
-      super.androidOnPermissionRequest,
-      super.onPermissionRequest,
-      @Deprecated('Use onGeolocationPermissionsShowPrompt instead')
-      super.androidOnGeolocationPermissionsShowPrompt,
-      super.onGeolocationPermissionsShowPrompt,
-      @Deprecated('Use onGeolocationPermissionsHidePrompt instead')
-      super.androidOnGeolocationPermissionsHidePrompt,
-      super.onGeolocationPermissionsHidePrompt,
-      @Deprecated('Use shouldInterceptRequest instead')
-      super.androidShouldInterceptRequest,
-      super.shouldInterceptRequest,
-      @Deprecated('Use onRenderProcessGone instead')
-      super.androidOnRenderProcessGone,
-      super.onRenderProcessGone,
-      @Deprecated('Use onRenderProcessResponsive instead')
-      super.androidOnRenderProcessResponsive,
-      super.onRenderProcessResponsive,
-      @Deprecated('Use onRenderProcessUnresponsive instead')
-      super.androidOnRenderProcessUnresponsive,
-      super.onRenderProcessUnresponsive,
-      @Deprecated('Use onFormResubmission instead')
-      super.androidOnFormResubmission,
-      super.onFormResubmission,
-      @Deprecated('Use onZoomScaleChanged instead') super.androidOnScaleChanged,
-      @Deprecated('Use onReceivedIcon instead') super.androidOnReceivedIcon,
-      super.onReceivedIcon,
-      @Deprecated('Use onReceivedTouchIconUrl instead')
-      super.androidOnReceivedTouchIconUrl,
-      super.onReceivedTouchIconUrl,
-      @Deprecated('Use onJsBeforeUnload instead') super.androidOnJsBeforeUnload,
-      super.onJsBeforeUnload,
-      @Deprecated('Use onReceivedLoginRequest instead')
-      super.androidOnReceivedLoginRequest,
-      super.onReceivedLoginRequest,
-      super.onPermissionRequestCanceled,
-      super.onRequestFocus,
-      @Deprecated('Use onWebContentProcessDidTerminate instead')
-      super.iosOnWebContentProcessDidTerminate,
-      super.onWebContentProcessDidTerminate,
-      @Deprecated(
-          'Use onDidReceiveServerRedirectForProvisionalNavigation instead')
-      super.iosOnDidReceiveServerRedirectForProvisionalNavigation,
-      super.onDidReceiveServerRedirectForProvisionalNavigation,
-      @Deprecated('Use onNavigationResponse instead')
-      super.iosOnNavigationResponse,
-      super.onNavigationResponse,
-      @Deprecated('Use shouldAllowDeprecatedTLS instead')
-      super.iosShouldAllowDeprecatedTLS,
-      super.shouldAllowDeprecatedTLS,
-      super.onCameraCaptureStateChanged,
-      super.onMicrophoneCaptureStateChanged,
-      super.onContentSizeChanged,
-      super.initialUrlRequest,
-      super.initialFile,
-      super.initialData,
-      @Deprecated('Use initialSettings instead') super.initialOptions,
-      super.initialSettings,
-      super.contextMenu,
-      super.initialUserScripts,
-      super.pullToRefreshController,
-      super.findInteractionController});
+  final Widget Function(HtmlElementView view)? customBuildFunction;
+
+  WebPlatformInAppWebViewWidgetCreationParams({
+    this.customBuildFunction,
+    super.controllerFromPlatform,
+    super.key,
+    super.layoutDirection,
+    super.gestureRecognizers,
+    super.headlessWebView,
+    super.keepAlive,
+    super.preventGestureDelay,
+    super.windowId,
+    super.onWebViewCreated,
+    super.onLoadStart,
+    super.onLoadStop,
+    @Deprecated('Use onReceivedError instead') super.onLoadError,
+    super.onReceivedError,
+    @Deprecated("Use onReceivedHttpError instead") super.onLoadHttpError,
+    super.onReceivedHttpError,
+    super.onProgressChanged,
+    super.onConsoleMessage,
+    super.shouldOverrideUrlLoading,
+    super.onLoadResource,
+    super.onScrollChanged,
+    @Deprecated('Use onDownloadStartRequest instead') super.onDownloadStart,
+    super.onDownloadStartRequest,
+    @Deprecated('Use onLoadResourceWithCustomScheme instead')
+    super.onLoadResourceCustomScheme,
+    super.onLoadResourceWithCustomScheme,
+    super.onCreateWindow,
+    super.onCloseWindow,
+    super.onJsAlert,
+    super.onJsConfirm,
+    super.onJsPrompt,
+    super.onReceivedHttpAuthRequest,
+    super.onReceivedServerTrustAuthRequest,
+    super.onReceivedClientCertRequest,
+    @Deprecated('Use FindInteractionController.onFindResultReceived instead')
+    super.onFindResultReceived,
+    super.shouldInterceptAjaxRequest,
+    super.onAjaxReadyStateChange,
+    super.onAjaxProgress,
+    super.shouldInterceptFetchRequest,
+    super.onUpdateVisitedHistory,
+    @Deprecated("Use onPrintRequest instead") super.onPrint,
+    super.onPrintRequest,
+    super.onLongPressHitTestResult,
+    super.onEnterFullscreen,
+    super.onExitFullscreen,
+    super.onPageCommitVisible,
+    super.onTitleChanged,
+    super.onWindowFocus,
+    super.onWindowBlur,
+    super.onOverScrolled,
+    super.onZoomScaleChanged,
+    @Deprecated('Use onSafeBrowsingHit instead') super.androidOnSafeBrowsingHit,
+    super.onSafeBrowsingHit,
+    @Deprecated('Use onPermissionRequest instead')
+    super.androidOnPermissionRequest,
+    super.onPermissionRequest,
+    @Deprecated('Use onGeolocationPermissionsShowPrompt instead')
+    super.androidOnGeolocationPermissionsShowPrompt,
+    super.onGeolocationPermissionsShowPrompt,
+    @Deprecated('Use onGeolocationPermissionsHidePrompt instead')
+    super.androidOnGeolocationPermissionsHidePrompt,
+    super.onGeolocationPermissionsHidePrompt,
+    @Deprecated('Use shouldInterceptRequest instead')
+    super.androidShouldInterceptRequest,
+    super.shouldInterceptRequest,
+    @Deprecated('Use onRenderProcessGone instead')
+    super.androidOnRenderProcessGone,
+    super.onRenderProcessGone,
+    @Deprecated('Use onRenderProcessResponsive instead')
+    super.androidOnRenderProcessResponsive,
+    super.onRenderProcessResponsive,
+    @Deprecated('Use onRenderProcessUnresponsive instead')
+    super.androidOnRenderProcessUnresponsive,
+    super.onRenderProcessUnresponsive,
+    @Deprecated('Use onFormResubmission instead')
+    super.androidOnFormResubmission,
+    super.onFormResubmission,
+    @Deprecated('Use onZoomScaleChanged instead') super.androidOnScaleChanged,
+    @Deprecated('Use onReceivedIcon instead') super.androidOnReceivedIcon,
+    super.onReceivedIcon,
+    @Deprecated('Use onReceivedTouchIconUrl instead')
+    super.androidOnReceivedTouchIconUrl,
+    super.onReceivedTouchIconUrl,
+    @Deprecated('Use onJsBeforeUnload instead') super.androidOnJsBeforeUnload,
+    super.onJsBeforeUnload,
+    @Deprecated('Use onReceivedLoginRequest instead')
+    super.androidOnReceivedLoginRequest,
+    super.onReceivedLoginRequest,
+    super.onPermissionRequestCanceled,
+    super.onRequestFocus,
+    @Deprecated('Use onWebContentProcessDidTerminate instead')
+    super.iosOnWebContentProcessDidTerminate,
+    super.onWebContentProcessDidTerminate,
+    @Deprecated(
+        'Use onDidReceiveServerRedirectForProvisionalNavigation instead')
+    super.iosOnDidReceiveServerRedirectForProvisionalNavigation,
+    super.onDidReceiveServerRedirectForProvisionalNavigation,
+    @Deprecated('Use onNavigationResponse instead')
+    super.iosOnNavigationResponse,
+    super.onNavigationResponse,
+    @Deprecated('Use shouldAllowDeprecatedTLS instead')
+    super.iosShouldAllowDeprecatedTLS,
+    super.shouldAllowDeprecatedTLS,
+    super.onCameraCaptureStateChanged,
+    super.onMicrophoneCaptureStateChanged,
+    super.onContentSizeChanged,
+    super.initialUrlRequest,
+    super.initialFile,
+    super.initialData,
+    @Deprecated('Use initialSettings instead') super.initialOptions,
+    super.initialSettings,
+    super.contextMenu,
+    super.initialUserScripts,
+    super.pullToRefreshController,
+    super.findInteractionController,
+  });
 
   /// Constructs a [WebPlatformInAppWebViewWidgetCreationParams] using a
   /// [PlatformInAppWebViewWidgetCreationParams].
   WebPlatformInAppWebViewWidgetCreationParams.fromPlatformInAppWebViewWidgetCreationParams(
       PlatformInAppWebViewWidgetCreationParams params)
       : this(
+            customBuildFunction: params.customBuildFunction,
             controllerFromPlatform: params.controllerFromPlatform,
             key: params.key,
             layoutDirection: params.layoutDirection,
@@ -282,6 +286,28 @@ class WebPlatformInAppWebViewWidget extends PlatformInAppWebViewWidget {
         // force keep alive id to match headless webview id
         _webPlatformParams.keepAlive?.id = headlessId;
       }
+    }
+    if (params.customBuildFunction != null) {
+      return params.customBuildFunction!(HtmlElementView(
+        viewType: 'com.pichillilorenzo/flutter_inappwebview',
+        onPlatformViewCreated: (int viewId) {
+          var webViewHtmlElement = WebPlatformManager.webViews[viewId]!;
+          webViewHtmlElement.initialSettings = initialSettings;
+          webViewHtmlElement.initialUrlRequest =
+              _webPlatformParams.initialUrlRequest;
+          webViewHtmlElement.initialFile = _webPlatformParams.initialFile;
+          webViewHtmlElement.initialData = _webPlatformParams.initialData;
+          webViewHtmlElement.headlessWebViewId =
+              _webPlatformParams.headlessWebView?.isRunning() ?? false
+                  ? _webPlatformParams.headlessWebView?.id
+                  : null;
+          webViewHtmlElement.prepare();
+          if (webViewHtmlElement.headlessWebViewId == null) {
+            webViewHtmlElement.makeInitialLoad();
+          }
+          _onPlatformViewCreated(viewId);
+        },
+      ));
     }
 
     return HtmlElementView(
